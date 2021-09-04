@@ -1,6 +1,4 @@
-# Rust Repo!!!
-
-### hello-rust Branch
+# hello-rust!
 
 러스트의 기본을 학습 및 정리
 
