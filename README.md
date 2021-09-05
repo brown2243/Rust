@@ -3,7 +3,7 @@
 러스트의 기본을 학습 및 정리
 
 1. Getting Started -> 21/09/04
-2. Programming a Guessing Game
+2. Programming a Guessing Game -> 21/09/05
 3. Common Programming Concepts
 4. Understanding Ownership
 5. Using Structs to Structure Related Data
