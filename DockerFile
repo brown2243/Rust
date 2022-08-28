@@ -1,0 +1,10 @@
+FROM rust:latest
+
+LABEL email="brown2243@naver.com"
+LABEL name="brown"
+LABEL version="1.0"
+LABEL description="Rust Practice"
+
+WORKDIR /usr/src/app
+COPY . .
+
