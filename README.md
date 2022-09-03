@@ -1,9 +1,10 @@
 # hello-rust!
 
 러스트의 기본을 학습 및 정리
+https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html
 
 1. [Getting Started -> 21/09/04 -> 22/08/28](Chap.1.md)
-2. Programming a Guessing Game -> 21/09/05
+2. [Programming a Guessing Game -> 21/09/05 -> 22/09/03](Chap.2.md)
 3. Common Programming Concepts
 4. Understanding Ownership
 5. Using Structs to Structure Related Data
@@ -24,4 +25,4 @@
 20. Final Project: Building a Multithreaded Web Server
 21. Appendix
 
-https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html
+[PS](Rust_PS.md)
