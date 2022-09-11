@@ -5,8 +5,8 @@
 1. [Getting Started -> 21/09/04 -> 22/08/28](Chap.1.md)
 2. [Programming a Guessing Game -> 21/09/05 -> 22/09/03](Chap.2.md)
 3. [Common Programming Concepts -> 22/09/04](Chap.3.md)
-4. Understanding Ownership
-5. Using Structs to Structure Related Data
+4. [Understanding Ownership -> 22/09/10](Chap.4.md)
+5. [Using Structs to Structure Related Data -> 22/09/11](Chap.5.md)
 6. Enums and Pattern Matching
 7. Managing Growing Projects with Packages, Crates, and Modules
 8. Common Collections
