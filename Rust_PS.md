@@ -250,6 +250,8 @@ fn digitize(n: u64) -> Vec<u8> {
 
 ---
 
+0904
+
 ### Grasshopper - Messi Goals
 
 ```rust
@@ -449,4 +451,369 @@ fn nb_year(p0: i32, percent: f64, aug: i32, p: i32) -> i32 {
     }
     cnt
 }
+```
+
+0907
+
+### Number of People in the Bus
+
+```rust
+fn number(bus_stops: &[(i32, i32)]) -> i32 {
+    let mut come = 0;
+    let mut out = 0;
+    for peoples in bus_stops {
+        let (push, pop) = peoples;
+        come += push;
+        out += pop;
+    }
+    come - out
+}
+//
+fn number(bus_stops:&[(i32,i32)]) -> i32 {
+    bus_stops.iter().fold(0,|acc,x| acc + x.0 - x.1)
+}
+fn number(bus_stops:&[(i32,i32)]) -> i32 {
+    bus_stops
+        .into_iter()
+        .map(|n| n.0 - n.1)
+        .sum()
+}
+
+```
+
+0910
+
+### Testing 1-2-3
+
+```rust
+fn number(lines: &[&str]) -> Vec<String> {
+    lines
+        .iter()
+        .enumerate()
+        .map(|(i, &item)| {
+            let mut str = String::from("");
+            let idx = i + 1;
+            let s = format!("{}: {}", idx, item);
+            str.push_str(&s);
+            str
+        })
+        .collect::<Vec<String>>()
+}
+//
+fn number(lines: &[&str]) -> Vec<String> {
+    lines.iter().enumerate().map(|x| format!("{}: {}", x.0 + 1, x.1)).collect()
+}
+fn number(lines: &[&str]) -> Vec<String> {
+    lines.iter().zip(1..).map(|(x, i)| format!("{i}: {x}")).collect()
+}
+fn number(lines: &[&str]) -> Vec<String> {
+    lines.iter().enumerate().map(|(n, line)| format!("{}: {line}", n + 1)).collect()
+}
+```
+
+### Complementary DNA
+
+```rust
+fn dna_strand(dna: &str) -> String {
+    let mut ans = String::from("");
+    dna.chars().for_each(|c| match c {
+        'A' => ans.push_str("T"),
+        'T' => ans.push_str("A"),
+        'G' => ans.push_str("C"),
+        _ => ans.push_str("G"),
+    });
+    ans
+}
+//
+fn dna_strand(dna: &str) -> String {
+  dna.chars().map(|c|
+    match c {
+        'A' => 'T',
+        'T' => 'A',
+        'G' => 'C',
+        'C' => 'G',
+        _ => c,
+    })
+    .collect()
+}
+use std::collections::HashMap;
+
+fn dna_strand(dna: &str) -> String {
+  let complements: HashMap<char, char> = [('A', 'T'), ('T', 'A'), ('C', 'G'), ('G', 'C')].iter().cloned().collect();
+  dna.chars().map(|c| complements.get(&c).unwrap()).collect()
+}
+```
+
+### Maximum Length Difference
+
+into_iter, iter의 차이 https://sftblw.tistory.com/91
+
+```rust
+fn mx_dif_lg(a1: Vec<&str>, a2: Vec<&str>) -> i32 {
+    if a1.len() == 0 || a2.len() == 0 {
+        -1
+    } else {
+        let a_map1 = a1.into_iter().map(|x| x.len() as i32);
+        let a_map2 = a_map1.clone();
+        let b_map1 = a2.into_iter().map(|x| x.len() as i32);
+        let b_map2 = b_map1.clone();
+        //
+        let x_max = a_map1.max().unwrap();
+        let x_min = a_map2.min().unwrap();
+        let y_max = b_map1.max().unwrap();
+        let y_min = b_map2.min().unwrap();
+
+        let a = (x_max - y_min).abs();
+        let b = (y_max - x_min).abs();
+        if a > b {
+            a
+        } else {
+            b
+        }
+    }
+}
+//
+use std::cmp::{max, min};
+use std::usize::MAX;
+
+pub fn mx_dif_lg(a1: Vec<&str>, a2: Vec<&str>) -> i32 {
+    if a1.is_empty() || a2.is_empty() {
+        return -1;
+    }
+    let (max1, min1) = a1
+        .iter()
+        .map(|&x| x.len())
+        .fold((0, MAX), |ac, x| (max(ac.0, x), min(ac.1, x)));
+    let (max2, min2) = a2
+        .iter()
+        .map(|&x| x.len())
+        .fold((0, MAX), |ac, x| (max(ac.0, x), min(ac.1, x)));
+
+    max(((max1 - min2) as i32).abs(), ((max2 - min1) as i32).abs())
+}
+fn mx_dif_lg(a1: Vec<&str>, a2: Vec<&str>) -> i32 {
+    if a1.len() == 0 || a2.len() == 0 { return -1 }
+    let a1_min = a1.iter().map(|s| s.len()).min().unwrap() as i32;
+    let a1_max = a1.iter().map(|s| s.len()).max().unwrap() as i32;
+    let a2_min = a2.iter().map(|s| s.len()).min().unwrap() as i32;
+    let a2_max = a2.iter().map(|s| s.len()).max().unwrap() as i32;
+    (a1_max - a2_min).max(a2_max - a1_min)
+}
+fn mx_dif_lg(a1: Vec<&str>, a2: Vec<&str>) -> i32 {
+    // your code
+    a1.iter().flat_map(|s1| a2.iter().map(|s2| (s1.len() as i32 - s2.len() as i32).abs()).collect::<Vec<_>>() ).max().unwrap_or(-1)
+}
+```
+
+### Odd or Even?
+
+```rust
+fn odd_or_even(numbers: Vec<i32>) -> String {
+    let sum: i32 = numbers.iter().sum();
+    if sum % 2 == 0 {
+        "even".to_string()
+    } else {
+        "odd".to_string()
+    }
+}
+//
+fn odd_or_even(numbers: Vec<i32>) -> String {
+    match numbers.iter().sum::<i32>() % 2 == 0 {
+        true => "even".to_string(),
+        false => "odd".to_string()
+    }
+}
+fn odd_or_even(numbers: Vec<i32>) -> String {
+    (if numbers.iter().sum::<i32>() % 2 == 0 {"even"} else {"odd"}).to_string()
+}
+```
+
+### Check the exam
+
+```rust
+
+fn check_exam(arr_a: &[&str], arr_b: &[&str]) -> i64 {
+    let ans = arr_a
+        .iter()
+        .enumerate()
+        .map(|(idx, val)| {
+            if arr_b[idx] == "" {
+                0
+            } else if &arr_b[idx] == val {
+                4
+            } else {
+                -1
+            }
+        })
+        .sum();
+    if ans < 0 {
+        0
+    } else {
+        ans
+    }
+}
+//
+fn check_exam(arr_a: &[&str], arr_b: &[&str]) -> i64 {
+    arr_a.iter().zip(arr_b.iter()).fold(0, |pts, ans| {
+        match ans {
+            (a, b) if a == b => pts + 4,
+            (_, b) if b == &"" => pts,
+            _ => pts - 1
+        }
+    }).max(0)
+}
+fn check_exam(arr_a: &[&str], arr_b: &[&str]) -> i64 {
+    arr_a
+        .iter()
+        .zip(arr_b)
+        .map(|(&a, &b)| match b {
+            "" => 0,
+            _ if a == b => 4,
+            _ => -1,
+        })
+        .sum::<i64>()
+        .max(0)
+}
+```
+
+### Highest and Lowest
+
+```rust
+fn high_and_low(numbers: &str) -> String {
+    let vec = numbers.split(" ").map(|x| x.parse::<i32>().unwrap());
+    let vec2 = vec.clone();
+    let min = vec.min().unwrap();
+    let max = vec2.max().unwrap();
+    format!("{} {}", max, min)
+}
+//
+fn high_and_low(numbers: &str) -> String {
+    use std::cmp;
+    let f = |(max, min), x| (cmp::max(max, x), cmp::min(min, x));
+
+    let answer = numbers
+        .split_whitespace()
+        .map(|x| x.parse::<i32>().unwrap())
+        .fold((i32::min_value(), i32::max_value()), f);
+    format!("{} {}", answer.0, answer.1)
+}
+extern crate itertools;
+use itertools::Itertools;
+
+fn high_and_low(numbers: &str) -> String {
+    let (min, max): (i32, i32) = numbers
+        .split_whitespace()
+        .map(|s| s.parse().unwrap())
+        .minmax()
+        .into_option()
+        .unwrap();
+    format!("{} {}", max, min)
+}
+fn high_and_low(numbers: &str) -> String {
+  let as_ints: Vec<i32> = numbers.split(" ").map(|x| x.parse().unwrap()).collect();
+  format!("{} {}", as_ints.iter().max().unwrap(), as_ints.iter().min().unwrap())
+}
+```
+
+### Sum of Minimums!
+
+```rust
+
+fn sum_of_minimums(numbers: [[u8; 4]; 4]) -> u8 {
+    numbers
+        .map(|arr| arr.into_iter().min().unwrap())
+        .iter()
+        .sum()
+}
+//
+fn sum_of_minimums(numbers: [[u8; 4]; 4]) -> u8 {
+    numbers.iter().map(|row| row.iter().min().unwrap()).sum()
+}
+fn sum_of_minimums(numbers: [[u8; 4]; 4]) -> u8 {
+    numbers.iter().filter_map(|v| v.iter().min()).sum()
+}
+fn sum_of_minimums(numbers: [[u8; 4]; 4]) -> u8 {
+    numbers.iter().flat_map(|x| x.iter().min()).sum()
+}
+
+```
+
+0911
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
+```
+
+###
+
+```rust
+
 ```
