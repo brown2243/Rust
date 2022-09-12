@@ -7,7 +7,7 @@
 3. [Common Programming Concepts -> 22/09/04](Chap.3.md)
 4. [Understanding Ownership -> 22/09/10](Chap.4.md)
 5. [Using Structs to Structure Related Data -> 22/09/11](Chap.5.md)
-6. Enums and Pattern Matching
+6. [Enums and Pattern Matching -> 22/09/12](Chap.6.md)
 7. Managing Growing Projects with Packages, Crates, and Modules
 8. Common Collections
 9. Error Handling
