@@ -8,7 +8,7 @@
 4. [Understanding Ownership -> 22/09/10](Chap.4.md)
 5. [Using Structs to Structure Related Data -> 22/09/11](Chap.5.md)
 6. [Enums and Pattern Matching -> 22/09/12](Chap.6.md)
-7. Managing Growing Projects with Packages, Crates, and Modules
+7. [Managing Growing Projects with Packages, Crates, and Modules -> 22/09/12](Chap.7.md)
 8. Common Collections
 9. Error Handling
 10. Generic Types, Traits, and Lifetimes

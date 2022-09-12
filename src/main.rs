@@ -1,39 +1,31 @@
-#[derive(Debug)]
-enum UsState {
-    Alabama,
-    Alaska,
-    // --snip--
-}
-enum Coin {
-    Penny,
-    Nickel,
-    Dime,
-    Quarter(UsState),
-}
-fn value_in_cents(coin: Coin) -> u8 {
-    println!("{:?}", UsState::Alabama);
-    match coin {
-        Coin::Penny => 1,
-        Coin::Nickel => 5,
-        Coin::Dime => 10,
-        Coin::Quarter(state) => {
-            println!("State quarter from {:?}!", state);
-            25
-        }
-    }
-}
 fn main() {
-    value_in_cents(Coin::Quarter(UsState::Alaska));
-
-    fn plus_one(x: Option<i32>) -> Option<i32> {
-        match x {
-            None => None,
-            Some(i) => Some(i + 1),
+    mod front_of_house {
+        pub mod hosting {
+            pub fn add_to_waitlist() {}
+            fn seat_at_table() {}
+        }
+        mod serving {
+            fn take_order() {}
+            fn serve_order() {}
+            fn take_payment() {}
         }
     }
-    let some_u8_value = Some(0f64);
-    let five = Some(5);
-    let six = plus_one(five);
-    let none = plus_one(None);
-    println!("{:?} {:?}", six, none);
+
+    pub fn eat_at_restaurant() {
+        // Absolute path
+        crate::front_of_house::hosting::add_to_waitlist();
+        // Relative path
+        front_of_house::hosting::add_to_waitlist();
+    }
+
+    fn serve_order() {}
+
+    mod back_of_house {
+        fn fix_incorrect_order() {
+            cook_order();
+            super::serve_order();
+        }
+
+        fn cook_order() {}
+    }
 }
