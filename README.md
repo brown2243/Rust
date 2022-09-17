@@ -9,8 +9,8 @@
 5. [Using Structs to Structure Related Data -> 22/09/11](docs/Chap.5.md)
 6. [Enums and Pattern Matching -> 22/09/12](docs/Chap.6.md)
 7. [Managing Growing Projects with Packages, Crates, and Modules -> 22/09/12](docs/Chap.7.md)
-8. Common Collections
-9. Error Handling
+8. [Common Collections -> 22/09/15](docs/Chap.8.md)
+9. [Error Handling -> 22/09/17](docs/Chap.9.md)
 10. Generic Types, Traits, and Lifetimes
 11. Writing Automated Tests
 12. An I/O Project: Building a Command Line Program
